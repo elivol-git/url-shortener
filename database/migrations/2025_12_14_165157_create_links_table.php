@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('target_url');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+
+            $table->index(['slug', 'is_active'], 'links_slug_is_active_index');
         });
     }
 
