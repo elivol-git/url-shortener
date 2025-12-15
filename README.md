@@ -3,7 +3,10 @@
 
 #Installation
 ##composer install
+##php artisan queue:table
 ##php artisan migrate
+##php artisan queue:work
+#Configuration
 ##.env
 ###set APP_URL
 ###set API_KEY
