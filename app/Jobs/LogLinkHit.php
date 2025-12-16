@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\LinkHitCreated;
 use App\Models\LinkHit;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -23,5 +24,7 @@ class LogLinkHit implements ShouldQueue
             'ip' => $this->ip,
             'user_agent' => $this->userAgent,
         ]);
+
+        event(new LinkHitCreated($this->linkId));
     }
 }
