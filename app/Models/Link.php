@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Link extends Model
 {
@@ -15,4 +16,9 @@ class Link extends Model
     protected $casts = [
         'is_active' => 'boolean',
     ];
+
+    public function hits(): HasMany
+    {
+        return $this->hasMany(LinkHit::class);
+    }
 }

@@ -3,12 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
 
-class StoreLinkRequest extends FormRequest
+class UpdateLinkRequest extends FormRequest
 {
-    protected $stopOnFirstFailure = true;
-
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -26,23 +23,26 @@ class StoreLinkRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => $this->slug? Str::slug($this->slug) : null,
+            'is_active' => filter_var($this->is_active, FILTER_VALIDATE_BOOLEAN),
         ]);
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
     public function rules(): array
     {
         return [
-            'target_url' => ['required', 'url'],
-            'slug' => ['unique:links','max:255'],
+            'is_active' => ['required', 'boolean'],
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'target_url' => 'Target URL',
-            'slug' => 'Slug'
+            'is_active' => 'Is active',
         ];
     }
 }

@@ -13,4 +13,8 @@ class LinkHit extends Model
         'ip',
         'user_agent',
     ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
 }
