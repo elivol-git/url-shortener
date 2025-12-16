@@ -9,17 +9,8 @@ class StoreLinkRequest extends FormRequest
 {
     protected $stopOnFirstFailure = true;
 
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        $apiKey = $this->header('X-Api-Key');
-
-        if (! $apiKey || $apiKey !== config('app.api_key')) {
-            abort(401, 'Invalid API key');
-        }
-
         return true;
     }
 

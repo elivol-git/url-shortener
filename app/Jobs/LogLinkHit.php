@@ -10,18 +10,12 @@ class LogLinkHit implements ShouldQueue
 {
     use Queueable;
 
-    /**
-     * Create a new job instance.
-     */
     public function __construct(public int $linkId,
                                 public string $ip,
                                 public ?string $userAgent)
     {
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
         LinkHit::create([
