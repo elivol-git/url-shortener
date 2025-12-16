@@ -9,3 +9,5 @@ Route::get('/', function () {
 
 Route::get('/r/{slug}', RedirectController::class)
     ->where('slug', '[A-Za-z0-9_-]+');
+
+//Route::get(' /admin/links', AdminController::class);
