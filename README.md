@@ -20,6 +20,9 @@ A **URL shortening service** with API endpoints and usage statistics.
 
 ```bash
 composer install
+sudo apt install -y nodejs npm
+npm install
+npm run build
 ```
 
 2. Create the queue table:
@@ -27,6 +30,12 @@ composer install
 ```bash
 php artisan queue:table
 php artisan migrate
+php artisan db:seed --class=AdminUserSeeder
+```
+3. Create Admin user:
+
+```bash
+php artisan db:seed --class=AdminUserSeeder
 ```
 
 ---
@@ -114,6 +123,12 @@ curl --location --request GET 'http://url-shortener.test/api/links/star-wars/sta
 
 ---
 
+## Admin section
+- **Go to http://your-local.test/login page and login with
+- admin@url-shortener.test
+- password123
+- **Visit /admin/links page
+
 ## Architecture Decisions
 
 - **API Key Authentication Middleware**  
@@ -127,3 +142,6 @@ curl --location --request GET 'http://url-shortener.test/api/links/star-wars/sta
 
 - **Queue for Logging Hits**  
   `LogLinkHit` jobs are dispatched asynchronously to improve performance and responsiveness.
+
+- **Auth handled by Breeze**
+  Laravel 12 compatible
